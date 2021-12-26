@@ -1,1 +1,29 @@
 /* You can add global styles to this file, and also import other style files */
+
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+body {
+    margin-bottom: 60px;
+}
+
+.body-wrapper {
+    padding-bottom: 60px;
+    padding-top: 1em;
+}
+
+html,
+body {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.pointer {
+    cursor: pointer;
+}
