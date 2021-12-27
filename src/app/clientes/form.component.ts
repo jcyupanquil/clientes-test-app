@@ -59,7 +59,7 @@ export class FormComponent implements OnInit {
     if (regionSelected === undefined && regionCliente === undefined) {
       return true;
     }
-    if (regionSelected === null || regionCliente === null) {
+    if (!regionSelected || !regionCliente) {
       return false;
     }
     return regionSelected.id === regionCliente.id;

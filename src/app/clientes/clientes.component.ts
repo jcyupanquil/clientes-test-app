@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { tap } from 'rxjs/operators';
 import Swal from 'sweetalert2';
+import { AuthService } from '../usuarios/auth.service';
 import { Cliente } from './cliente';
 import { ClienteService } from './cliente.service';
 import { ModalService } from './detalle/modal.service';
@@ -20,7 +21,8 @@ export class ClientesComponent implements OnInit {
 
   constructor(private clienteService: ClienteService,
     private modalService: ModalService,
-    private activatedRoute: ActivatedRoute) {
+    private activatedRoute: ActivatedRoute,
+    private authService: AuthService) {
   }
 
   ngOnInit() {
