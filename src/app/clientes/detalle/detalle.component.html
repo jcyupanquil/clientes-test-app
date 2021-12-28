@@ -19,12 +19,15 @@
                                 </ul>
 
                                 <div *ngIf="authService.hasRole('ROLE_ADMIN')" class="input-group mb-3">
-                                    <input (change)="selectFile($event)" type="file" class="form-control" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04" aria-label="Cargar">
-                                    <button (click)="uploadFile()" [disabled]="!selectedFile" class="btn btn-outline-secondary" type="button" id="inputGroupFileAddon04">Enviar</button>
+                                    <input (change)="selectFile($event)" type="file" class="form-control" id="inputGroupFile04"
+                                        aria-describedby="inputGroupFileAddon04" aria-label="Cargar">
+                                    <button (click)="uploadFile()" [disabled]="!selectedFile" class="btn btn-outline-secondary" type="button"
+                                        id="inputGroupFileAddon04">Enviar</button>
                                 </div>
 
                                 <div *ngIf="progress > 0" class="progress" style="height: 40px;">
-                                    <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" [ngStyle]="{width: progress+'%'}" attr.aria-valuenow="{{progress}}" aria-valuemin="0" aria-valuemax="100">
+                                    <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" [ngStyle]="{width: progress+'%'}"
+                                        attr.aria-valuenow="{{progress}}" aria-valuemin="0" aria-valuemax="100">
                                         {{progress}}%
                                     </div>
                                 </div>
@@ -32,6 +35,42 @@
                             <div class="col-sm">
                                 <img *ngIf="cliente?.foto" src="http://localhost:8080/api/uploads/img/{{cliente.foto}}" alt="" class="img-thumbnail rounded">
                             </div>
+                        </div>
+                        <div *ngIf="authService.hasRole('ROLE_ADMIN')">
+                            <button type="button" class="btn btn-success btn-sm" [routerLink]="['/facturas/form', cliente.id]">Crear Factura</button>
+                        </div>
+                        <div class="row">
+                            <table class="table table-bordered table-striped my-4" *ngIf="!!cliente.facturas && cliente.facturas.length > 0; else noFacturas">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Descripcion</th>
+                                        <th>Fecha</th>
+                                        <th>Total</th>
+                                        <th>Detalle</th>
+                                        <th *ngIf="authService.hasRole('ROLE_ADMIN')">Eliminar</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let factura of cliente.facturas">
+                                        <td>{{ factura.id }}</td>
+                                        <td>{{ factura.descripcion }}</td>
+                                        <td>{{ factura.createAt }}</td>
+                                        <td>{{ factura.total }}</td>
+                                        <td class="text-center"><button class="btn btn-primary btn-sm" type="button"
+                                                [routerLink]="['/facturas', factura.id]">Ver</button>
+                                        </td>
+                                        <td  *ngIf="authService.hasRole('ROLE_ADMIN')" class="text-center"><button class="btn btn-danger btn-sm" type="button"
+                                                (click)="deleteFactura(factura)">Eliminar</button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <ng-template #noFacturas>
+                                <div class="alert alert-info my-4">
+                                    No hay facturas asignadas para el cliente {{ cliente.nombre }}
+                                </div>
+                            </ng-template>
                         </div>
                     </div>
                 </div>

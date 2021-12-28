@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable, pipe, throwError } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
-import { Cliente } from './cliente';
+import { Cliente } from './cliente.model';
 import { Region } from './region';
 
 @Injectable({

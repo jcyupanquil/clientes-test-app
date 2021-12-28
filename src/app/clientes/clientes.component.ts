@@ -3,7 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { tap } from 'rxjs/operators';
 import Swal from 'sweetalert2';
 import { AuthService } from '../usuarios/auth.service';
-import { Cliente } from './cliente';
+import { Cliente } from './cliente.model';
 import { ClienteService } from './cliente.service';
 import { ModalService } from './detalle/modal.service';
 

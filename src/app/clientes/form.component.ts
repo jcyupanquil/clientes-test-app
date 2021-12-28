@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import Swal from 'sweetalert2';
-import { Cliente } from './cliente';
+import { Cliente } from './cliente.model';
 import { ClienteService } from './cliente.service';
 import { Region } from './region';
 
@@ -47,6 +47,7 @@ export class FormComponent implements OnInit {
   }
 
   update(): void {
+    this.cliente.facturas = null;
     this.clienteService.update(this.cliente).subscribe(
       response => {
         this.router.navigate(['/clientes']);
